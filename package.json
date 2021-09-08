@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node src/index",
     "dev": "nodemon src/index"
   },
   "keywords": [],
@@ -17,5 +18,8 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.12"
+  },
+  "engines": {
+    "node": "v16.6.1"
   }
 }
