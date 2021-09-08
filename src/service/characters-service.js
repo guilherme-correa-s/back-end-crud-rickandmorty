@@ -21,6 +21,7 @@ exports.post = async (newCharacter) => {
         throw new Error("The character must contain: nome and imagemUrl.");
     const { acknowledged } = await charactersData.post(newCharacter);
     if (!acknowledged) throw new Error("Mongodb Server error.");
+    return newCharacter;
 };
 
 exports.put = async (id, updateCharacter) => {
@@ -32,7 +33,6 @@ exports.put = async (id, updateCharacter) => {
     const { acknowledged } = await charactersData.put(id, updateCharacter);
     if (!acknowledged) throw new Error("Mongodb Server error.");
     const character = await exports.getById(id);
-    console.log(character);
     return character;
 };
 
