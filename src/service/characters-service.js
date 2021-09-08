@@ -35,3 +35,11 @@ exports.put = async (id, updateCharacter) => {
     console.log(character);
     return character;
 };
+
+exports.delete = async (id) => {
+    await exports.getById(id);
+    const ObjectId = mongodb.ObjectId;
+    id = ObjectId(id);
+    const { acknowledged } = await charactersData.delete(id);
+    if (!acknowledged) throw new Error("Mongodb Server error.");
+};

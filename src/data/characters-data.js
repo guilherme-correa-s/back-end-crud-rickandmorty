@@ -31,3 +31,11 @@ exports.put = async (id, updateCharacter) => {
     );
     return res;
 };
+
+exports.delete = async (id) => {
+    const db = databaseMongo.getDb();
+    const res = await db.deleteOne({
+        _id: id,
+    });
+    return res;
+};

@@ -2,7 +2,7 @@ const express = require("express");
 const route = express.Router();
 const charactersService = require("../service/characters-service");
 
-route.put("/:id", async (req, res) => {
+route.put("/:id", async (req, res, next) => {
     try {
         const updateCharacter = req.body;
         const character = await charactersService.put(
@@ -11,7 +11,7 @@ route.put("/:id", async (req, res) => {
         );
         res.json(character);
     } catch (e) {
-        res.status(404).send({ error: e.message });
+        next(e);
     }
 });
 
