@@ -2,21 +2,21 @@ const express = require("express");
 const route = express.Router();
 const charactersService = require("../service/characters-service");
 
-route.get("/", async (req, res) => {
+route.get("/", async (req, res, next) => {
     try {
         const characters = await charactersService.get();
         res.send(characters);
     } catch (e) {
-        res.status(404).send({ error: e.message });
+        next(e);
     }
 });
 
-route.get("/:id", async (req, res) => {
+route.get("/:id", async (req, res, next) => {
     try {
         const character = await charactersService.getById(req.params.id);
         res.send(character);
     } catch (e) {
-        res.status(404).send({ error: e.message });
+        next(e);
     }
 });
 
